@@ -2,10 +2,10 @@ import './App.css';
 import { FetchPostListView } from './components/PostView/FetchPostListView';
 
 function App() {
-  return 
+  return (
     <div className="app">
       <FetchPostListView />
-    </div>;
+    </div>);
 }
 
 export default App;
