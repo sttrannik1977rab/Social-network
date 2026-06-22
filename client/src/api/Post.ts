@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { z } from "zod/v4-mini";
 import { validateResponse } from "./validateResponse";
 
+
 // export interface Post {
 //     /**
 //      * Индентификатор поста.
@@ -52,7 +53,7 @@ export type  FetchPostListResponse = z.infer<typeof FetchPostListSchema>;
 
 // Функция, которая получает список постов с сервера
 export function fetchPostList(): Promise<FetchPostListResponse> {
-    return fetch("/api/posts") // функция fetfch делает запрос к серверу
+    return fetch("/posts") // функция fetfch делает запрос к серверу
         .then(response => response.json()) // преобразует ответ в формат json
         .then((data) => FetchPostListSchema.parse(data)); // валидирует, проверяет ответ на соответствие c описанной выше схемой
 }
@@ -127,3 +128,4 @@ export function createPost(text: string): Promise<void> {
         }),
     }).then(validateResponse).then(() => undefined);
 }
+
