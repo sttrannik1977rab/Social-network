@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { z } from "zod/v4-mini";
+import { validateResponse } from "./validateResponse";
 
 // export interface Post {
 //     /**
@@ -111,5 +112,18 @@ export function usePostList() {
     return {
         state, // возвращаем из хука текущее состояние
         refetch, //возвращаем функцию посторения запроса 
-    } 
+    }
+}
+
+// Функция создания постов
+export function createPost(text: string): Promise<void> {
+    return fetch("/api/posts", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            text,
+        }),
+    }).then(validateResponse).then(() => undefined);
 }
